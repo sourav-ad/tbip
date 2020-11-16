@@ -131,7 +131,7 @@ def build_input_pipeline(data_dir,
       dense_shape=shuffled_counts.shape)
   dataset = tf.data.Dataset.from_tensor_slices(
       (documents, shuffled_counts, shuffled_author_indices))
-  batches = dataset.repeat().batch(batch_size).prefetch(batch_size)
+  batches = dataset.batch(batch_size)
   iterator = tf.data.batches.iter()
   #iterator = batches.make_one_shot_iterator()
   vocabulary = np.loadtxt(os.path.join(data_dir, "vocabulary.txt"), 
